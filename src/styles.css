@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(51, 133, 255, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(70, 215, 255, 0.14), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(91, 108, 255, 0.12), transparent 26%),
+    #050816;
+  color: #f8fafc;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+::selection {
+  background: rgba(70, 215, 255, 0.18);
+  color: #f8fafc;
+}
+
+@layer components {
+  .premium-panel {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] shadow-card backdrop-blur-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 28px 90px rgba(2, 8, 23, 0.5);
+  }
+
+  .premium-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 26%, rgba(70, 215, 255, 0.08) 72%, transparent);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .premium-subpanel {
+    @apply rounded-[1.5rem] border border-white/10 bg-slate-950/45 shadow-inset backdrop-blur-md;
+  }
+
+  .spotlight-card {
+    @apply relative overflow-hidden transition duration-500;
+  }
+
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(70, 215, 255, 0.18), transparent 32%);
+    opacity: 0;
+    transition: opacity 260ms ease;
+    pointer-events: none;
+  }
+
+  .spotlight-card:hover::after {
+    opacity: 1;
+  }
+
+  .section-divider {
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(92%, 1100px);
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), rgba(70, 215, 255, 0.22), rgba(148, 163, 184, 0.1), transparent);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (max-width: 639px) {
+  .premium-panel {
+    border-radius: 1.35rem;
+  }
+
+  .premium-subpanel {
+    border-radius: 1.1rem;
+  }
+
+  .section-divider::before {
+    width: calc(100% - 2rem);
+  }
+}
